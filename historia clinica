@@ -1,0 +1,41 @@
+@startuml
+class Paciente {
+    - String CI
+    - String nombre
+    - String apellidos
+    - Date fechaNacimiento
+    - String sexo
+    - double peso
+    - double estatura
+    - String direccion
+    + buscarDatos(): void
+    + modificarDatos(): void
+    + eliminar(): void
+}
+
+class Imagen {
+    - String nombreArchivo
+    - Date fechaTomada
+    - String tipo
+    - String comentarios
+}
+
+class Enfermedad {
+    - String nombre
+    - Date fecha
+    - String tratamiento
+}
+
+class Hospital {
+    + buscarPaciente(CI: String): Paciente
+    + obtenerPacientesMasAltos(): List<String>
+    + cantidadMujeresConDengue(): int
+    + obtenerPacientesOrdenados(criterio: String): List<Paciente>
+    + agregarPaciente(p: Paciente): void
+    + eliminarPaciente(CI: String): void
+}
+
+Paciente "1" -- "*" Imagen : tiene >
+Paciente "1" -- "*" Enfermedad : ha padecido >
+Hospital "1" -- "*" Paciente : administra >
+@enduml
